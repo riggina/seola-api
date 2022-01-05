@@ -57,6 +57,7 @@ module.exports = {
 			email : req.body.email,
 			password : req.body.password,
 			foto_profil : req.body.foto_profil,
+			bidang_seni : req.body.bidang_seni,
 			telepon : req.body.telepon,
 			alamat : req.body.alamat,
 			sekolah : req.body.sekolah,
@@ -104,6 +105,7 @@ module.exports = {
 			user.email = req.body.email ? req.body.email : user.email;
 			user.password = req.body.password ? req.body.password : user.password;
 			user.foto_profil = req.body.foto_profil ? req.body.foto_profil : user.foto_profil;
+			user.bidang_seni = req.body.bidang_seni ? req.body.bidang_seni : user.bidang_seni;
 			user.telepon = req.body.telepon ? req.body.telepon : user.telepon;
 			user.alamat = req.body.alamat ? req.body.alamat : user.alamat;
 			user.sekolah = req.body.sekolah ? req.body.sekolah : user.sekolah;

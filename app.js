@@ -2,19 +2,34 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+require("dotenv").config();
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const openDBConnection = require("./helpers/db");
 
-var app = express();
+const uri = process.env.MONGO_URI;
+const port = process.env.PORT || 3000;
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+async function main() {
+    try {
+        // koneksi ke database
+        await openDBConnection(uri);
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+        const app = express();
+        app.use(logger('dev'));
+        app.use(express.json());
+        app.use(express.urlencoded({ extended: false }));
+        app.use(cookieParser());
+        app.use(express.static(path.join(__dirname, 'public')));
+        app.use(indexRouter);
+    
+        app.listen(port, () => {
+            console.log("server is listening on port", port);
+        })
+    } catch(error) {
+        console.log("Error :", error);
+    }
+    
+}
 
-module.exports = app;
+main();

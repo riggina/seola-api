@@ -7,6 +7,7 @@ var userSchema = new Schema({
 	'email' : String,
 	'password' : String,
 	'foto_profil' : String,
+	'bidang_seni' : String,
 	'telepon' : String,
 	'alamat' : String,
 	'sekolah' : String,
