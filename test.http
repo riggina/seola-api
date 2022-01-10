@@ -1,10 +1,44 @@
-GET http://localhost:5000
+# TEST CRUD #
 
-GET http://localhost:5000/users
+GET http://localhost:5000/
 
-GET http://localhost:5000/users/61d507beaf26cbae1af4021e
 
-POST http://localhost:5000/users
+# KELAS #
+
+POST http://localhost:5000/kelas
+Content-Type: application/json
+
+{
+    "bidang_seni": "seni lukis",
+    "nama_kelas": "Berekspresi dengan Lukisan",
+    "deskripsi": "Melukis adalah kegiatan mengolah medium dua dimensi atau permukaan dari objek tiga dimensi untuk mendapat kesan tertentu. Medium lukisan bisa berbentuk apa saja, seperti kanvas, kertas, papan, dan bahkan film di dalam fotografi bisa dianggap sebagai media lukisan. Alat yang digunakan juga bisa bermacam-macam, dengan syarat bisa memberikan imaji tertentu kepada media yang digunakan.",
+    "foto_kelas": "path/to/lukis.jpg",
+    "nama_mentor": "Amy Zahrawaan",
+    "foto_mentor": "path/to/amyzahrawaan.jpg"
+}
+
+GET http://localhost:5000/kelas
+
+GET http://localhost:5000/kelas/61dbf8aee7a6183c07861495
+
+PUT http://localhost:5000/kelas/61dbf8aee7a6183c07861495
+Content-Type: application/json
+
+{
+    "bidang_seni": "seni lukis",
+    "nama_kelas": "Berekspresi dengan Lukisan",
+    "deskripsi": "Melukis adalah kegiatan mengolah medium dua dimensi atau permukaan dari objek tiga dimensi untuk mendapat kesan tertentu.",
+    "foto_kelas": "path/to/lukis.jpg",
+    "nama_mentor": "Amy Zahrawaan",
+    "foto_mentor": "path/to/amyzahrawaan.jpg"
+}
+
+DELETE http://localhost:5000/kelas/61dbf8aee7a6183c07861495
+
+
+# USER #
+
+POST http://localhost:5000/user
 Content-Type: application/json
 
 {
@@ -12,36 +46,93 @@ Content-Type: application/json
     "nama_belakang" : "Amalia",
     "email" : "rosa@mail.com",
     "password" : "password",
-    "foto_profil" : "profil.jpg",
-    "bidang_seni" : "seni rupa",
+    "foto_profil" : "path/to/profil.jpg",
+    "bidang_seni" : "61dbf9ade7a6183c0786149c",
     "telepon" : "08122222222",
     "alamat" : "Jl. Kehidupan",
     "sekolah" : "SMA N 2",
     "jenis_kelamin" : "Perempuan",
     "tanggal_lahir" : "2002-03-15",
-    "facebook" : "Rosa Cantique Cellalu",
+    "facebook" : "Rosa Amalia",
     "instagram" : "@rosaaa",
-    "linkedin" : "Rosa Amalia"
+    "linkedin" : "/in/rosaamalia"
 }
 
-PUT http://localhost:5000/users/61d507beaf26cbae1af4021e
+GET http://localhost:5000/user
+
+PUT http://localhost:5000/user/61dbfa5de7a6183c0786149f
 Content-Type: application/json
 
 {
     "nama_depan" : "Rosa",
-    "nama_belakang" : "Amalia Putri",
+    "nama_belakang" : "Amalia",
     "email" : "rosa@mail.com",
-    "password" : "password",
-    "foto_profil" : "profil.jpg",
-    "bidang_seni" : "seni rupa",
+    "foto_profil" : "path/to/profil.jpg",
+    "bidang_seni" : "61dbf9ade7a6183c0786149c",
     "telepon" : "08122222222",
-    "alamat" : "Jl. Kehidupan",
+    "alamat" : "Jl. Kayangan Riau",
     "sekolah" : "SMA N 2",
     "jenis_kelamin" : "Perempuan",
     "tanggal_lahir" : "2002-03-15",
-    "facebook" : "Rosa Cantique Cellalu",
+    "facebook" : "Rosa Amalia",
     "instagram" : "@rosaaa",
-    "linkedin" : "Rosa Amalia"
+    "linkedin" : "/in/rosaamalia"
 }
 
-DELETE http://localhost:5000/users/61d507beaf26cbae1af4021e
+DELETE http://localhost:5000/user/61dbfa5de7a6183c0786149f
+
+
+# MODUL #
+
+POST http://localhost:5000/modul
+Content-Type: application/json
+
+{
+    "urutan_modul": 1,
+    "kelas": "61dbf9ade7a6183c0786149c",
+    "nama_modul": "Modul 01: Pandangan Filosofis Ki Hajar Dewantara dan Driyarkara tentang Pendidikan",
+    "isi_modul": "test",
+    "link_video": "bit.ly/wC1nbE"
+}
+
+POST http://localhost:5000/modul
+Content-Type: application/json
+
+{
+    "urutan_modul": 2,
+    "kelas": "61dbf9ade7a6183c0786149c",
+    "nama_modul": "Modul 01: Pradigma Pendidikan Kontekstual",
+    "isi_modul": "test",
+    "link_video": "bit.ly/2UGiFqE",
+    "tugas": "test"
+}
+
+GET http://localhost:5000/modul
+
+PUT http://localhost:5000/modul/61dc0053c039b72a729cbbad
+Content-Type: application/json
+
+{
+    "urutan_modul": 1,
+    "kelas": "61dbf9ade7a6183c0786149c",
+    "nama_modul": "Modul 01: Pandangan Filosofis Ki Hajar Dewantara dan Driyarkara tentang Pendidikan",
+    "isi_modul": "test isi modul",
+    "link_video": "bit.ly/wC1nbE"
+}
+
+DELETE http://localhost:5000/modul/61dc0053c039b72a729cbbad
+
+
+# PROGRES SISWA #
+
+POST http://localhost:5000/progres
+Content-Type: application/json
+
+{
+    "user": "61dbfb44e7a6183c078614a5",
+    "modul": "61dc00b7c039b72a729cbbb3",
+    "status_progres": "PROGRES"
+}
+
+
+# TUGAS TERKUMPUL #
