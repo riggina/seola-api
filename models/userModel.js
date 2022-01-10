@@ -7,7 +7,10 @@ var userSchema = new Schema({
 	'email' : String,
 	'password' : String,
 	'foto_profil' : String,
-	'bidang_seni' : String,
+	'bidang_seni' : {
+	 	type: Schema.Types.ObjectId,
+	 	ref: 'kelas'
+	},
 	'telepon' : String,
 	'alamat' : String,
 	'sekolah' : String,
