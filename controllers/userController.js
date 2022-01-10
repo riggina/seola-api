@@ -1,4 +1,5 @@
 var UserModel = require('../models/userModel.js');
+const passwordHash = require('password-hash');
 
 /**
  * userController.js
@@ -51,11 +52,13 @@ module.exports = {
      * userController.create()
      */
     create: function (req, res) {
+        const password = passwordHash.generate(req.body.password);
+
         var user = new UserModel({
 			nama_depan : req.body.nama_depan,
 			nama_belakang : req.body.nama_belakang,
 			email : req.body.email,
-			password : req.body.password,
+			password : password,
 			foto_profil : req.body.foto_profil,
 			bidang_seni : req.body.bidang_seni,
 			telepon : req.body.telepon,
@@ -103,7 +106,6 @@ module.exports = {
             user.nama_depan = req.body.nama_depan ? req.body.nama_depan : user.nama_depan;
 			user.nama_belakang = req.body.nama_belakang ? req.body.nama_belakang : user.nama_belakang;
 			user.email = req.body.email ? req.body.email : user.email;
-			user.password = req.body.password ? req.body.password : user.password;
 			user.foto_profil = req.body.foto_profil ? req.body.foto_profil : user.foto_profil;
 			user.bidang_seni = req.body.bidang_seni ? req.body.bidang_seni : user.bidang_seni;
 			user.telepon = req.body.telepon ? req.body.telepon : user.telepon;

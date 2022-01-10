@@ -52,12 +52,12 @@ module.exports = {
      */
     create: function (req, res) {
         var modul = new ModulModel({
-			urutan_model : req.body.urutan_model,
+			urutan_modul : req.body.urutan_model,
 			kelas : req.body.kelas,
 			nama_modul : req.body.nama_modul,
 			isi_modul : req.body.isi_modul,
+            link_video: req.body.link_video,
 			tugas : req.body.tugas,
-			status_progres : req.body.status_progres
         });
 
         modul.save(function (err, modul) {
@@ -92,13 +92,13 @@ module.exports = {
                 });
             }
 
-            modul.urutan_model = req.body.urutan_model ? req.body.urutan_model : modul.urutan_model;
+            modul.urutan_modul = req.body.urutan_modul ? req.body.urutan_modul : modul.urutan_modul;
 			modul.kelas = req.body.kelas ? req.body.kelas : modul.kelas;
 			modul.nama_modul = req.body.nama_modul ? req.body.nama_modul : modul.nama_modul;
 			modul.isi_modul = req.body.isi_modul ? req.body.isi_modul : modul.isi_modul;
+            modul.link_video = req.body.link_video ? req.body.link_video : modul.link_video;
 			modul.tugas = req.body.tugas ? req.body.tugas : modul.tugas;
-			modul.status_progres = req.body.status_progres ? req.body.status_progres : modul.status_progres;
-			
+
             modul.save(function (err, modul) {
                 if (err) {
                     return res.status(500).json({

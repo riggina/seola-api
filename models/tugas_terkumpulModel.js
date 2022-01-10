@@ -11,9 +11,18 @@ var tugas_terkumpulSchema = new Schema({
 	 	ref: 'user'
 	},
 	'file_tugas' : String,
-	'tanggal_kumpul' : Date,
+	'tanggal_kumpul' : {
+		type: Date,
+		default: Date.now
+	},
 	'tanggal_nilai' : Date,
-	'status' : String,
+	'status' : {
+		type: String,
+		enum: {
+			values: ['Disetujui', 'Ditolak'],
+			message: '{VALUE} tidak tersedia'
+		}
+	},
 	'rating' : Number,
 	'poin' : Number,
 	'komentar' : String,

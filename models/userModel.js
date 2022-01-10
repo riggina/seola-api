@@ -4,17 +4,29 @@ var Schema   = mongoose.Schema;
 var userSchema = new Schema({
 	'nama_depan' : String,
 	'nama_belakang' : String,
-	'email' : String,
+	'email' : {
+		type: String,
+		unique: true
+	},
 	'password' : String,
 	'foto_profil' : String,
 	'bidang_seni' : {
 	 	type: Schema.Types.ObjectId,
 	 	ref: 'kelas'
 	},
-	'telepon' : String,
+	'telepon' : {
+		type: String,
+		unique: true
+	},
 	'alamat' : String,
 	'sekolah' : String,
-	'jenis_kelamin' : String,
+	'jenis_kelamin' : {
+		type: String,
+		enum: {
+			values: ['Laki-laki', 'Perempuan'],
+			message: 'Jenis kelamin {VALUE} tidak ada'
+		}
+	},
 	'tanggal_lahir' : Date,
 	'facebook' : String,
 	'instagram' : String,
