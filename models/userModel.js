@@ -14,10 +14,7 @@ var userSchema = new Schema({
 	 	type: Schema.Types.ObjectId,
 	 	ref: 'kelas'
 	},
-	'telepon' : {
-		type: String,
-		unique: true
-	},
+	'telepon' : String,
 	'alamat' : String,
 	'sekolah' : String,
 	'jenis_kelamin' : {

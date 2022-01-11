@@ -52,7 +52,7 @@ module.exports = {
      */
     create: function (req, res) {
         var modul = new ModulModel({
-			urutan_modul : req.body.urutan_model,
+			urutan_modul : req.body.urutan_modul,
 			kelas : req.body.kelas,
 			nama_modul : req.body.nama_modul,
 			isi_modul : req.body.isi_modul,

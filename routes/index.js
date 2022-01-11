@@ -9,9 +9,11 @@ var progres_siswaRouter = require('./progres_siswaRoutes');
 var tugas_terkumpulRouter = require('./tugas_terkumpulRoutes');
 var eventRouter = require('./eventRoutes');
 
+var profileRouter = require('./profileRoutes');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Seola' });
 });
 
 router.use('/auth', authRouter);
@@ -22,5 +24,7 @@ router.use('/modul', modulRouter);
 router.use('/progres', progres_siswaRouter);
 router.use('/tugas', tugas_terkumpulRouter);
 router.use('/event', eventRouter);
+
+router.use('/profile', profileRouter);
 
 module.exports = router;

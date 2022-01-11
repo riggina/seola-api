@@ -1,4 +1,5 @@
 var UserModel = require('../models/userModel.js');
+var KelasModel = require('../models/kelasModel.js');
 const passwordHash = require('password-hash');
 
 /**
@@ -146,5 +147,42 @@ module.exports = {
 
             return res.status(204).json();
         });
+    },
+
+    /**
+     * userController.profile()
+     */
+    profile: async function (req, res) {
+        try {
+            var id = req.user_id;
+            console.log(id)
+    
+            const user = await UserModel.findOne({_id: id});
+            console.log(user)
+            const kelas = await KelasModel.findOne({_id: user.bidang_seni});
+
+            res.status(200).json({
+                nama_depan: user.nama_depan,
+                nama_belakang: user.nama_belakang,
+                email: user.email,
+                password: user.password,
+                foto_profil: user.foto_profil,
+                bidang_seni: kelas.bidang_seni,
+                telepon: user.telepon,
+                alamat: user.alamat,
+                sekolah: user.sekolah,
+                jenis_kelamin: user.jenis_kelamin,
+                tanggal_lahir: user.tanggal_lahir,
+                facebook: user.facebook,
+                instagram: user.instagram,
+                linkedin: user.linkedin
+            })
+
+        } catch (error) {
+            res.status(500).json({
+                message: 'Error when getting user.',
+                error: err
+            });
+        }
     }
 };
