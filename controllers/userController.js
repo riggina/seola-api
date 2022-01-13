@@ -165,7 +165,6 @@ module.exports = {
                 nama_depan: user.nama_depan,
                 nama_belakang: user.nama_belakang,
                 email: user.email,
-                password: user.password,
                 foto_profil: user.foto_profil,
                 bidang_seni: kelas.bidang_seni,
                 telepon: user.telepon,
