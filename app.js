@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 var nocache = require('nocache');
+var fileUpload = require('express-fileupload');
 require("dotenv").config();
 
 var indexRouter = require('./routes/index');
@@ -22,6 +23,8 @@ async function main() {
         app.use(express.json());
         app.use(cors());
         app.use(nocache());
+        app.disable('etag');
+        app.use(fileUpload());
         app.use(express.urlencoded({ extended: false }));
         app.use(cookieParser());
         app.use(express.static(path.join(__dirname, 'public')));

@@ -94,6 +94,7 @@ module.exports = {
                     expiresIn: '30m'
                 })
 
+                console.log(token)
                 return res.status(200).send({
                     token: token
                 })
