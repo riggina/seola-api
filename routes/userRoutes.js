@@ -21,7 +21,7 @@ router.post('/', userController.create);
 /*
  * PUT
  */
-router.put('/:id', userController.update);
+router.put('/', authenticateJWT, userController.update);
 
 /*
  * DELETE
