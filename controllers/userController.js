@@ -1,6 +1,8 @@
 var UserModel = require('../models/userModel.js');
 var KelasModel = require('../models/kelasModel.js');
-const passwordHash = require('password-hash');
+var passwordHash = require('password-hash');
+var crypto = require("crypto");
+var path = require('path')
 
 /**
  * userController.js
@@ -88,7 +90,7 @@ module.exports = {
      * userController.update()
      */
     update: function (req, res) {
-        var id = req.params.id;
+        var id = req.user_id;
 
         UserModel.findOne({_id: id}, function (err, user) {
             if (err) {
@@ -155,7 +157,6 @@ module.exports = {
     profile: async function (req, res) {
         try {
             var id = req.user_id;
-            console.log(id)
     
             const user = await UserModel.findOne({_id: id});
             console.log(user)
@@ -182,6 +183,39 @@ module.exports = {
                 message: 'Error when getting user.',
                 error: err
             });
+        }
+    },
+
+    upload: async function (req, res) {
+        try {
+            /** uploading the image */
+            const file = req.files.file;
+            file.name = crypto.randomBytes(10).toString('hex') + '.jpg';
+            let file_move = path.join(__dirname, '../public/images/user');
+    
+            file.mv(`${file_move}/${file.name}`, err => {
+                if(err) {
+                    console.log(err)
+                }
+            })
+    
+            let filepath = `http://localhost:5000/images/user/${file.name}`
+
+            /** save filepath to database */
+            var id = req.user_id;
+            const user = await UserModel.findOne({_id: id});
+            user.foto_profil = filepath;
+
+            await user.save();
+            res.status(200).send({
+                file_name: file.name,
+                file_path: user.foto_profil
+            })
+
+        } catch (err) {
+            res.status(500).send({
+                message: 'Unexpected Error'
+            })
         }
     }
 };
