@@ -168,6 +168,7 @@ module.exports = {
                 email: user.email,
                 foto_profil: user.foto_profil,
                 bidang_seni: kelas.bidang_seni,
+                bidang_seni_id: user.bidang_seni,
                 telepon: user.telepon,
                 alamat: user.alamat,
                 sekolah: user.sekolah,

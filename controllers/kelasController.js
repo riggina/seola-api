@@ -55,7 +55,8 @@ module.exports = {
 			bidang_seni : req.body.bidang_seni,
 			nama_kelas : req.body.nama_kelas,
 			deskripsi : req.body.deskripsi,
-			foto_kelas : req.body.foto_kelas,
+			foto_thumbnail : req.body.foto_thumbnail,
+			foto_background : req.body.foto_background,
 			nama_mentor : req.body.nama_mentor,
 			foto_mentor : req.body.foto_mentor
         });
@@ -95,7 +96,8 @@ module.exports = {
             kelas.bidang_seni = req.body.bidang_seni ? req.body.bidang_seni : kelas.bidang_seni;
 			kelas.nama_kelas = req.body.nama_kelas ? req.body.nama_kelas : kelas.nama_kelas;
 			kelas.deskripsi = req.body.deskripsi ? req.body.deskripsi : kelas.deskripsi;
-			kelas.foto_kelas = req.body.foto_kelas ? req.body.foto_kelas : kelas.foto_kelas;
+			kelas.foto_thumbnail = req.body.foto_thumbnail ? req.body.foto_thumbnail : kelas.foto_thumbnail;
+			kelas.foto_background = req.body.foto_background ? req.body.foto_background : kelas.foto_background;
 			kelas.nama_mentor = req.body.nama_mentor ? req.body.nama_mentor : kelas.nama_mentor;
 			kelas.foto_mentor = req.body.foto_mentor ? req.body.foto_mentor : kelas.foto_mentor;
 			

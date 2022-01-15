@@ -15,23 +15,12 @@ Content-Type: application/json
     "bidang_seni": "61dbf9ade7a6183c0786149c"
 }
 
-POST http://localhost:5000/auth/register
-Content-Type: application/json
-
-{
-    "nama_depan": "Riggina",
-    "nama_belakang": "Oceania",
-    "email": "riggina@mail.com",
-    "password": "password",
-    "bidang_seni": "61dbf9ade7a6183c0786149c"
-}
-
 POST http://localhost:5000/auth/login
 Content-Type: application/json
 
 {
-    "email": "riggina@mail.com",
-    "password": "password"
+    "email": "kimjiwoo@mail.com",
+    "password": "P@ssword123"
 }
 
 POST http://localhost:5000/auth/logout
@@ -47,12 +36,13 @@ POST http://localhost:5000/kelas
 Content-Type: application/json
 
 {
-    "bidang_seni": "seni lukis",
+    "bidang_seni": "Seni Lukis",
     "nama_kelas": "Berekspresi dengan Lukisan",
     "deskripsi": "Melukis adalah kegiatan mengolah medium dua dimensi atau permukaan dari objek tiga dimensi untuk mendapat kesan tertentu. Medium lukisan bisa berbentuk apa saja, seperti kanvas, kertas, papan, dan bahkan film di dalam fotografi bisa dianggap sebagai media lukisan. Alat yang digunakan juga bisa bermacam-macam, dengan syarat bisa memberikan imaji tertentu kepada media yang digunakan.",
-    "foto_kelas": "path/to/lukis.jpg",
+    "foto_thumbnail": "http://localhost:5000/images/kelas/seni-lukis-sm.png",
+    "foto_background": "http://localhost:5000/images/kelas/seni-lukis-lg.png",
     "nama_mentor": "Amy Zahrawaan",
-    "foto_mentor": "path/to/amyzahrawaan.jpg"
+    "foto_mentor": "http://remedial.id/wp-content/uploads/2018/08/AmySimonyetbali-Foto-350x350.jpg"
 }
 
 GET http://localhost:5000/kelas
@@ -134,10 +124,11 @@ Content-Type: application/json
 
 {
     "urutan_modul": 1,
-    "kelas": "61dbf9ade7a6183c0786149c",
+    "kelas": "61e1928d24c3ce109b2f0cb4",
     "nama_modul": "Modul 01: Pandangan Filosofis Ki Hajar Dewantara dan Driyarkara tentang Pendidikan",
     "isi_modul": "test",
-    "link_video": "https://youtu.be/RJYwVOXwn08"
+    "foto_modul": "https://user-images.githubusercontent.com/68428942/149606041-f92cce0b-51f4-4fce-9a06-aaeede447b38.jpg",
+    "link_video": "RJYwVOXwn08"
 }
 
 POST http://localhost:5000/modul
@@ -145,10 +136,11 @@ Content-Type: application/json
 
 {
     "urutan_modul": 2,
-    "kelas": "61dbf9ade7a6183c0786149c",
+    "kelas": "61e1928d24c3ce109b2f0cb4",
     "nama_modul": "Modul 02: Pradigma Pendidikan Kontekstual",
     "isi_modul": "test",
-    "link_video": "https://youtu.be/uK764rVASss"
+    "foto_modul": "https://user-images.githubusercontent.com/68428942/149606041-f92cce0b-51f4-4fce-9a06-aaeede447b38.jpg",
+    "link_video": "uK764rVASss"
 }
 
 POST http://localhost:5000/modul
@@ -156,10 +148,11 @@ Content-Type: application/json
 
 {
     "urutan_modul": 3,
-    "kelas": "61dbf9ade7a6183c0786149c",
+    "kelas": "61e1928d24c3ce109b2f0cb4",
     "nama_modul": "Modul 03: Transformasi Peran Guru",
     "isi_modul": "test",
-    "link_video": "https://youtu.be/-knxtJxJJfs"
+    "foto_modul": "https://user-images.githubusercontent.com/68428942/149606041-f92cce0b-51f4-4fce-9a06-aaeede447b38.jpg",
+    "link_video": "-knxtJxJJfs"
 }
 
 POST http://localhost:5000/modul
@@ -167,10 +160,11 @@ Content-Type: application/json
 
 {
     "urutan_modul": 4,
-    "kelas": "61dbf9ade7a6183c0786149c",
+    "kelas": "61e1928d24c3ce109b2f0cb4",
     "nama_modul": "Modul 04: Teknologi Digital Sebagai Sumber Pembelajaran",
     "isi_modul": "test",
-    "link_video": "https://youtu.be/Lm4RAUZfu58"
+    "foto_modul": "https://user-images.githubusercontent.com/68428942/149606041-f92cce0b-51f4-4fce-9a06-aaeede447b38.jpg",
+    "link_video": "Lm4RAUZfu58"
 }
 
 POST http://localhost:5000/modul
@@ -178,10 +172,11 @@ Content-Type: application/json
 
 {
     "urutan_modul": 5,
-    "kelas": "61dbf9ade7a6183c0786149c",
+    "kelas": "61e1928d24c3ce109b2f0cb4",
     "nama_modul": "Modul 05: Pembelajaran Kontekstual Berbasis Projek",
     "isi_modul": "test",
-    "link_video": "https://youtu.be/JmycffHZ9UI",
+    "foto_modul": "https://user-images.githubusercontent.com/68428942/149606041-f92cce0b-51f4-4fce-9a06-aaeede447b38.jpg",
+    "link_video": "JmycffHZ9UI",
     "tugas": "test"
 }
 
@@ -190,10 +185,11 @@ Content-Type: application/json
 
 {
     "urutan_modul": 6,
-    "kelas": "61dbf9ade7a6183c0786149c",
+    "kelas": "61e1928d24c3ce109b2f0cb4",
     "nama_modul": "Modul 06: Seni dan Budaya sebagai Media Artikulasi Pengetahuan",
     "isi_modul": "test",
-    "link_video": "https://youtu.be/blmm179GUAs",
+    "foto_modul": "https://user-images.githubusercontent.com/68428942/149606041-f92cce0b-51f4-4fce-9a06-aaeede447b38.jpg",
+    "link_video": "blmm179GUAs",
     "tugas": "test"
 }
 
@@ -202,10 +198,11 @@ Content-Type: application/json
 
 {
     "urutan_modul": 7,
-    "kelas": "61dbf9ade7a6183c0786149c",
+    "kelas": "61e1928d24c3ce109b2f0cb4",
     "nama_modul": "Modul 07: Evaluasi dan Penilaian Pembelajaran Kontekstual",
     "isi_modul": "test",
-    "link_video": "https://youtu.be/B-pKC-JCzgA",
+    "foto_modul": "https://user-images.githubusercontent.com/68428942/149606041-f92cce0b-51f4-4fce-9a06-aaeede447b38.jpg",
+    "link_video": "B-pKC-JCzgA",
     "tugas": "test"
 }
 
@@ -235,3 +232,74 @@ DELETE http://localhost:5000/modul/61dc0053c039b72a729cbbad
 GET http://localhost:5000/profile
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOnsiaWQiOiI2MWRkNDI3ODI2ZDA4ZWFlNjZlNzlmZWEiLCJlbWFpbCI6InJpZ2dpbmFAbWFpbC5jb20ifSwiaWF0IjoxNjQxODk1NDY0LCJleHAiOjE2NDE4OTcyNjR9.hkF1cvuLG5MzFM8ge3kbFw_-rKPnxRRsRP7UiQ1HRDw
+
+
+# EVENT
+POST http://localhost:5000/event
+Content-Type: application/json
+
+{
+    "nama_event": "URBAN DIALOGUES #3",
+    "tanggal_event": "4 Oktober 2021 - 14 Januari 2022",
+    "tempat_event": "WTC 3 Jl. Jendral Sudriman Kv 29-31",
+    "gambar": "https://artlogic-res.cloudinary.com/w_1200,c_limit,f_auto,fl_lossy,q_auto/ws-isaartadvisory/usr/images/exhibitions/group_images_override/49/poster-urban-dialog.png",
+    "deskripsi": "“Urban Dialogue #3” is a project with the purpose of building dialogue through art media to public spaces.",
+    "link_eksternal": "https://www.isaartanddesign.com/exhibitions/49-urban-dialogues-3/"
+}
+
+POST http://localhost:5000/event
+Content-Type: application/json
+
+{
+    "nama_event": "REVERBERATION",
+    "tanggal_event": "15 Januari - 17 Februari 2022",
+    "tempat_event": "Wisma 46 - Kota BNI, Jakarta",
+    "gambar": "https://artlogic-res.cloudinary.com/w_1200,c_limit,f_auto,fl_lossy,q_auto/ws-isaartadvisory/usr/images/exhibitions/group_images_override/56/hendra-poster1.jpg",
+    "deskripsi": "‘Reverberation: From the Past to the Present’ will be held on 15 January – 17 February, 2022 at Wisma 46 Kota BNI gallery.",
+    "link_eksternal": "https://www.isaartanddesign.com/exhibitions/56/"
+}
+
+POST http://localhost:5000/event
+Content-Type: application/json
+
+{
+    "nama_event": "Women in Contemporary Art",
+    "tanggal_event": "17 Januari - 25 Maret 2022",
+    "tempat_event": "WTC 3 Jl. Jendral Sudriman Kav 29-31",
+    "gambar": "https://artlogic-res.cloudinary.com/w_1200,c_limit,f_auto,fl_lossy,q_auto/ws-isaartadvisory/usr/images/exhibitions/group_images_override/57/poster-wtc.jpg",
+    "deskripsi": "Contemporary phenomena in art are not merely an aesthetic exploration but are developments from the artist's personal experience influenced by social and cultural influences that build the context of visual representation. ",
+    "link_eksternal": "https://www.isaartanddesign.com/exhibitions/57/"
+}
+
+POST http://localhost:5000/event
+Content-Type: application/json
+
+{
+    "nama_event": "Sinta Tantra",
+    "tanggal_event": "12 Maret 2022",
+    "tempat_event": "WTC 3 Jl. Jendral Sudriman Kav 29-31",
+    "gambar": "https://artlogic-res.cloudinary.com/w_650,c_limit,f_auto,fl_lossy,q_auto/ws-isaartadvisory/usr/images/exhibitions/group_images_override/54/screen-shot-2021-11-19-at-11.18.37.png",
+    "deskripsi": "The artworks are focused on the surroundings, where both the artwork and its surrounding space are able to create harmony, enhancing the beauty of both while at the same time delivering the history and the message behind the works.",
+    "link_eksternal": "https://www.isaartanddesign.com/exhibitions/54-sinta-tantra-solo-exhibition/"
+}
+
+POST http://localhost:5000/event
+Content-Type: application/json
+
+{
+    "nama_event": "SILVER LINING",
+    "tanggal_event": "22 November 2021 - 7 Januari 2022",
+    "tempat_event": "Online",
+    "gambar": "https://artlogic-res.cloudinary.com/w_650,c_limit,f_auto,fl_lossy,q_auto/ws-isaartadvisory/usr/images/exhibitions/group_images_override/52/7-jan.jpg",
+    "deskripsi": "ISA Art & Design presents “Silver Lining”, an exhibition exploring eight Indonesian artists who have a different perspective as to how they view contemporary life through the lens.",
+    "link_eksternal": "https://www.isaartanddesign.com/exhibitions/52/"
+}
+
+
+
+
+# PROGRES MODUL
+
+GET http://localhost:5000/modul/progres
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOnsiaWQiOiI2MWUxOTNhNDI0YzNjZTEwOWIyZjBjYzUiLCJlbWFpbCI6ImtpbWppd29vQG1haWwuY29tIn0sImlhdCI6MTY0MjIwNzQ1NywiZXhwIjoxNjQyMjkzODU3fQ.EZZgiE2syZF21Mvm_w65A5yobVQLhqvuQApo0qxUhyU

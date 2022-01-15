@@ -56,6 +56,7 @@ module.exports = {
 			tanggal_event : req.body.tanggal_event,
 			tempat_event : req.body.tempat_event,
 			deskripsi : req.body.deskripsi,
+			gambar : req.body.gambar,
 			link_eksternal : req.body.link_eksternal
         });
 
@@ -95,6 +96,7 @@ module.exports = {
 			event.tanggal_event = req.body.tanggal_event ? req.body.tanggal_event : event.tanggal_event;
 			event.tempat_event = req.body.tempat_event ? req.body.tempat_event : event.tempat_event;
 			event.deskripsi = req.body.deskripsi ? req.body.deskripsi : event.deskripsi;
+			event.gambar = req.body.gambar ? req.body.gambar : event.gambar;
 			event.link_eksternal = req.body.link_eksternal ? req.body.link_eksternal : event.link_eksternal;
 			
             event.save(function (err, event) {

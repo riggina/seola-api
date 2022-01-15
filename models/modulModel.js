@@ -9,6 +9,7 @@ var modulSchema = new Schema({
 	},
 	'nama_modul' : String,
 	'isi_modul' : String,
+	'foto_modul' : String,
 	'link_video' : String,
 	'tugas' : String
 });
