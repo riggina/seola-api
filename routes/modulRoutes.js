@@ -27,4 +27,9 @@ router.put('/:id', modulController.update);
  */
 router.delete('/:id', modulController.remove);
 
+/*
+ * GET LAST
+ */
+router.get('/last', modulController.last);
+
 module.exports = router;

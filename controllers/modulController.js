@@ -1,4 +1,6 @@
 var ModulModel = require('../models/modulModel.js');
+var progres_siswaModel = require('../models/progres_siswaModel.js');
+
 
 /**
  * modulController.js
@@ -128,5 +130,17 @@ module.exports = {
 
             return res.status(204).json();
         });
-    }
+    },
+
+    /**
+     * modulController.last()
+     */
+         last: function (req, res) {
+
+            progres_siswaModel.find().toArray(function(err, result) {
+                if (err) throw err;
+                console.log(result);
+            });
+
+         },
 };
