@@ -163,6 +163,16 @@ module.exports = {
                     }
 
                     modul_progres.push(data)
+                } else if(modul.status_progres==='MULAI' && modul.tugas_selesai===undefined) {
+                    let data = {
+                        _id: modul._id,
+                        user: modul.user,
+                        modul: modul.modul,
+                        status_progres: modul.status_progres,
+                        progres: 0
+                    }
+
+                    modul_progres.push(data)
                 } else if(modul.status_progres==='PROGRES' && modul.tugas_selesai===undefined) {
                     let data = {
                         _id: modul._id,
@@ -180,6 +190,17 @@ module.exports = {
                         modul: modul.modul,
                         status_progres: modul.status_progres,
                         progres: 100
+                    }
+
+                    modul_progres.push(data)
+                } else if(modul.status_progres==='MULAI' && modul.tugas_selesai===false) {
+                    let data = {
+                        _id: modul._id,
+                        user: modul.user,
+                        modul: modul.modul,
+                        status_progres: modul.status_progres,
+                        tugas_selesai: modul.tugas_selesai,
+                        progres: 0
                     }
 
                     modul_progres.push(data)
@@ -205,7 +226,7 @@ module.exports = {
                     }
 
                     modul_progres.push(data)
-                } else if(modul.status_progres==='SELESAI' && modul.Progres_siswaModeltugas_selesai===false) {
+                } else if(modul.status_progres==='SELESAI' && modul.tugas_selesai===false) {
                     let data = {
                         _id: modul._id,
                         user: modul.user,
