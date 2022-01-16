@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var tugas_terkumpulController = require('../controllers/tugas_terkumpulController.js');
+const { authenticateJWT } = require('../middlewares/auth')
 
 /*
  * GET
@@ -16,6 +17,11 @@ router.get('/:id', tugas_terkumpulController.show);
  * POST
  */
 router.post('/', tugas_terkumpulController.create);
+
+/*
+ * POST
+ */
+router.post('/upload/:id_modul', authenticateJWT, tugas_terkumpulController.uploadTugas);
 
 /*
  * PUT

@@ -36,17 +36,25 @@ module.exports = {
             for(const item in modul)
             {
                 /** Menambahkan setiap modul ke colection progres_siswa dengan default BELUM */
-                if(modul[item].tugas != undefined) {
+                if(item==0) {
                     var progres = new ProgresModel({
                         user: dataUser.id,
                         modul: modul[item].id,
-                        tugas_selesai: 0
+                        status_progres: 'MULAI'
                     })
                 } else {
-                    var progres = new ProgresModel({
-                        user: dataUser.id,
-                        modul: modul[item].id
-                    })
+                    if(modul[item].tugas != undefined) {
+                        var progres = new ProgresModel({
+                            user: dataUser.id,
+                            modul: modul[item].id,
+                            tugas_selesai: 0
+                        })
+                    } else {
+                        var progres = new ProgresModel({
+                            user: dataUser.id,
+                            modul: modul[item].id
+                        })
+                    }
                 }
 
                 await progres.save();

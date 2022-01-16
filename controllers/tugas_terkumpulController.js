@@ -1,4 +1,7 @@
 var Tugas_terkumpulModel = require('../models/tugas_terkumpulModel.js');
+var crypto = require("crypto");
+var fs = require('fs');
+var path = require('path');
 
 /**
  * tugas_terkumpulController.js
@@ -136,5 +139,47 @@ module.exports = {
 
             return res.status(204).json();
         });
+    },
+
+    uploadTugas: async function (req, res) {
+        try {
+            var id_modul = req.params.id_modul;
+            var id = req.user_id;
+
+            console.log(id_modul, id)
+
+            /** uploading the image */
+            const file = req.files.file;
+            file.name = id_modul + '.jpg';
+            let file_move = path.join(__dirname, `../public/images/tugas/${id}`);
+            
+            await fs.promises.mkdir(file_move, { recursive: true })
+
+            file.mv(`${file_move}/${file.name}`, err => {
+                if(err) {
+                    console.log(err)
+                }
+            })
+    
+            let filepath = `http://localhost:5000/images/tugas/${id}/${file.name}`
+
+            /** save filepath to database */
+            var tugas_terkumpul = new Tugas_terkumpulModel({
+                modul : id_modul,
+                user : id,
+                file_tugas : filepath
+            });
+
+            await tugas_terkumpul.save();
+
+            res.status(200).json(tugas_terkumpul);
+
+        } catch(err) {
+            console.log(err)
+            res.status(500).json({
+                message: 'Error when uploading tugas.',
+                error: err
+            });
+        }
     }
 };
