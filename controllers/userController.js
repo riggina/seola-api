@@ -3,6 +3,7 @@ var KelasModel = require('../models/kelasModel.js');
 var passwordHash = require('password-hash');
 var crypto = require("crypto");
 var path = require('path')
+require("dotenv").config();
 
 /**
  * userController.js
@@ -168,6 +169,7 @@ module.exports = {
                 email: user.email,
                 foto_profil: user.foto_profil,
                 bidang_seni: kelas.bidang_seni,
+                bidang_seni_id: user.bidang_seni,
                 telepon: user.telepon,
                 alamat: user.alamat,
                 sekolah: user.sekolah,
@@ -199,7 +201,7 @@ module.exports = {
                 }
             })
     
-            let filepath = `http://localhost:5000/images/user/${file.name}`
+            let filepath = `${process.env.URL}/images/user/${file.name}`
 
             /** save filepath to database */
             var id = req.user_id;

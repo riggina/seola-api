@@ -6,6 +6,7 @@ var eventSchema = new Schema({
 	'tanggal_event' : String,
 	'tempat_event' : String,
 	'deskripsi' : String,
+	'gambar' : String,
 	'link_eksternal' : String
 });
 

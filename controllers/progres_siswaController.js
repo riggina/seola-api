@@ -1,4 +1,5 @@
 var Progres_siswaModel = require('../models/progres_siswaModel.js');
+var ModulModel = require('../models/modulModel.js');
 
 /**
  * progres_siswaController.js
@@ -126,11 +127,48 @@ module.exports = {
         });
     },
 
-    // last: function (req, res) {
-    //     var query = { status_progress: "PROGRES" };
-    //     Progres_siswaModel.find(query).toArray(function(err, result) {
-    //         if (err) throw err;
-    //         console.log(result);
-    //       });
-    // }
+    updateProgres: async function (req, res) {
+        try {
+            var id_modul = req.params.id_modul;
+            var id = req.user_id;
+
+            /** update status progres */
+            let progres_siswa = await Progres_siswaModel.findOne({user: id, modul: id_modul});
+
+            if(progres_siswa.status_progres != 'SELESAI' && progres_siswa.tugas_selesai ==undefined || progres_siswa.status_progres == 'SELESAI' && progres_siswa.tugas_selesai ==0 || progres_siswa.status_progres != 'SELESAI' && progres_siswa.tugas_selesai !=1  ) {
+                progres_siswa.status_progres = req.body.status_progres ? req.body.status_progres : progres_siswa.status_progres;
+                progres_siswa.tugas_selesai = req.body.tugas_selesai ? req.body.tugas_selesai : progres_siswa.tugas_selesai;
+    
+                await progres_siswa.save();
+    
+                if((req.body.status_progres === 'SELESAI' && progres_siswa.tugas_selesai==undefined) || (req.body.status_progres === 'SELESAI' && progres_siswa.tugas_selesai==1))
+                {
+                    /** cari modul selanjutnya */
+                    let urutan_modul_sekarang = await ModulModel.findOne({_id: id_modul});
+                    let urutan_modul_selanjutnya = urutan_modul_sekarang.urutan_modul + 1;
+                    let modul_selanjutnya = await ModulModel.findOne({kelas: urutan_modul_sekarang.kelas, urutan_modul: urutan_modul_selanjutnya});
+                    
+                    if(modul_selanjutnya != undefined) {
+                        /** update status progres urutan selanjutnya */
+                        let progres_siswa_selanjutnya = await Progres_siswaModel.findOne({user:id, modul: modul_selanjutnya._id});
+        
+                        progres_siswa_selanjutnya.status_progres = 'MULAI'
+        
+                        await progres_siswa_selanjutnya.save();
+                    }
+                }
+
+                res.status(200).send(progres_siswa)
+            } else {
+                res.status(200).send(progres_siswa)
+            }
+
+        } catch (err) {
+            res.status(500).json({
+                message: 'Error when updating progres_siswa',
+                error: err
+            });
+            console.log(err)
+        }
+    },
 };

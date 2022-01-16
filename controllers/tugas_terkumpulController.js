@@ -1,4 +1,8 @@
 var Tugas_terkumpulModel = require('../models/tugas_terkumpulModel.js');
+var crypto = require("crypto");
+var fs = require('fs');
+var path = require('path');
+require("dotenv").config();
 
 /**
  * tugas_terkumpulController.js
@@ -136,5 +140,78 @@ module.exports = {
 
             return res.status(204).json();
         });
+    },
+
+    uploadTugas: async function (req, res) {
+        try {
+            var id_modul = req.params.id_modul;
+            var id = req.user_id;
+
+            /** uploading the image */
+            const file = req.files.file;
+            file.name = id_modul + '.jpg';
+            let file_move = path.join(__dirname, `../public/images/tugas/${id}`);
+            
+            await fs.promises.mkdir(file_move, { recursive: true })
+
+            file.mv(`${file_move}/${file.name}`, err => {
+                if(err) {
+                    console.log(err)
+                }
+            })
+    
+            let filepath = `${process.env.URL}/images/tugas/${id}/${file.name}`
+
+            /** save filepath to database */
+            var tugas_terkumpul = new Tugas_terkumpulModel({
+                modul : id_modul,
+                user : id,
+                file_tugas : filepath
+            });
+
+            await tugas_terkumpul.save();
+
+            res.status(200).json(tugas_terkumpul);
+
+        } catch(err) {
+            console.log(err)
+            res.status(500).json({
+                message: 'Error when uploading tugas.',
+                error: err
+            });
+        }
+    },
+
+    getByModul: async function (req, res) {
+        try {
+            var id_modul = req.params.id_modul;
+            var id = req.user_id;
+            
+            let tugas = await Tugas_terkumpulModel.findOne({user: id, modul: id_modul}).populate('modul');
+
+            res.status(200).send(tugas);
+        } catch (err) {
+            console.log(err)
+            res.status(500).json({
+                message: 'Error when getting tugas.',
+                err: err
+            })
+        }
+    },
+
+    portofolio: async function (req, res) {
+        try {
+            var id = req.user_id;
+
+            let tugas = await Tugas_terkumpulModel.find({user: id})
+            
+            res.status(200).send(tugas);
+        } catch(err) {
+            console.log(err)
+            res.status(500).json({
+                message: 'Error when getting portofolio.',
+                err: err
+            })
+        }
     }
 };

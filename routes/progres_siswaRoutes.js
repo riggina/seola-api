@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var progres_siswaController = require('../controllers/progres_siswaController.js');
+const { authenticateJWT } = require('../middlewares/auth')
 
 /*
  * GET
@@ -20,7 +21,13 @@ router.post('/', progres_siswaController.create);
 /*
  * PUT
  */
+router.put('/status/:id_modul', authenticateJWT, progres_siswaController.updateProgres);
+
+/*
+ * PUT
+ */
 router.put('/:id', progres_siswaController.update);
+
 
 /*
  * DELETE
