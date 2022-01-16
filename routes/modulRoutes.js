@@ -12,6 +12,8 @@ router.get('/', modulController.list);
  * GET
  */
 router.get('/progres', authenticateJWT, modulController.progres);
+router.get('/last', authenticateJWT, modulController.last);
+
 
 /*
  * GET
@@ -33,9 +35,5 @@ router.put('/:id', modulController.update);
  */
 router.delete('/:id', modulController.remove);
 
-/*
- * GET LAST
- */
-router.get('/last', modulController.last);
 
 module.exports = router;
