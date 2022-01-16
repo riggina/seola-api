@@ -124,5 +124,13 @@ module.exports = {
 
             return res.status(204).json();
         });
-    }
+    },
+
+    // last: function (req, res) {
+    //     var query = { status_progress: "PROGRES" };
+    //     Progres_siswaModel.find(query).toArray(function(err, result) {
+    //         if (err) throw err;
+    //         console.log(result);
+    //       });
+    // }
 };

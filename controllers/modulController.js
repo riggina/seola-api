@@ -137,10 +137,17 @@ module.exports = {
      */
          last: function (req, res) {
 
-            progres_siswaModel.find().toArray(function(err, result) {
-                if (err) throw err;
-                console.log(result);
+            progres_siswaModel.find({ status_progres: "PROGRES" }).toArray(function(err, result) {
+                if (err) {
+                    return res.status(500).json({
+                        message: 'Error.',
+                        error: err
+                    });
+                }
+    
+                return res.json(result);
             });
+
 
          },
 };
