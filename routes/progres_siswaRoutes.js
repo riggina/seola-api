@@ -34,4 +34,6 @@ router.put('/:id', progres_siswaController.update);
  */
 router.delete('/:id', progres_siswaController.remove);
 
+// router.get('/last', progres_siswaController.last);
+
 module.exports = router;

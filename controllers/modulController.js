@@ -255,5 +255,43 @@ module.exports = {
         } catch (err) {
             res.sstatus(500).send(err);
         }
+    },
+
+    /**
+     * modulComtoller.last()
+     */
+     last: async function (req, res) {
+        try {
+            const id = req.user_id;
+
+            /** mendapatkan kelas yg diambil user */
+            const kelas = await UserModel.findById(id, 'bidang_seni');
+            
+            /** mendapatkan jumlah modul kelas yg diambil */
+            // const jumlah_modul = await ModulModel.find({ kelas: kelas.bidang_seni }).countDocuments();
+
+            /** mendapatkan progres_siswa dengan modul */
+            let modul = await Progres_siswaModel.find({ user: id }).populate('modul');
+
+            let result = [];
+            modul.map(function(modul) {
+                if(modul.status_progres==='PROGRES'|| modul.status_progres==='MULAI' ) {
+                    let data = {
+                        _id: modul._id,
+                        user: modul.user,
+                        modul: modul.modul,
+                        status_progres: modul.status_progres,
+                        tugas_selesai: modul.tugas_selesai,
+                    }
+
+                    result.push(data)  
+                    
+                } 
+            })
+
+            res.status(200).send(result)
+        } catch (err) {
+            res.status(500).send(err);
+        }
     }
 };
