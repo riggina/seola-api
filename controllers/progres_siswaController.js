@@ -164,11 +164,11 @@ module.exports = {
             }
 
         } catch (err) {
-            console.log(err)
             res.status(500).json({
                 message: 'Error when updating progres_siswa',
                 error: err
             });
+            console.log(err)
         }
     },
 };

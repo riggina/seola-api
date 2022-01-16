@@ -11,6 +11,17 @@ router.get('/', tugas_terkumpulController.list);
 /*
  * GET
  */
+router.get('/modul/:id_modul', authenticateJWT, tugas_terkumpulController.getByModul);
+
+/*
+ * GET
+ */
+router.get('/portofolio', authenticateJWT, tugas_terkumpulController.portofolio);
+
+
+/*
+ * GET
+ */
 router.get('/:id', tugas_terkumpulController.show);
 
 /*
