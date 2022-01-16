@@ -119,7 +119,7 @@ DELETE http://localhost:5000/user/61dbfa5de7a6183c0786149f
 
 # MODUL #
 
-GET http://localhost:5000/modul
+POST http://localhost:5000/modul
 Content-Type: application/json
 
 {
