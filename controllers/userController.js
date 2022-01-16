@@ -224,33 +224,41 @@ module.exports = {
     /**
      * userController.listLeaderboard()
      */
-     listLeaderboard: async (req, res) => {
-        const leaderboard = await UserModel.aggregate([
-            {
-                $lookup: {
-                    from: "tugas_terkumpul",
-                    localField: "_id",
-                    foreignField: "user",
-                    as: "tugas_terkumpul",
-                },
-            },
-            { $unwind: "$tugas_terkumpul" },
-            {
-                $group: {
-                    _id: "$nama_depan",
-                    user: { $first: "$$ROOT" },
-                    poin: { $sum: "$tugas_terkumpul.poin" },
-                },
-            },
-            {
-                $replaceRoot: {
-                    newRoot: { $mergeObjects: ["$user", { poin: "$poin" }] },
-                },
-            },
-            { $project: { tugas_terkumpul: 0 } },
-            { $sort: { poin: -1 } },
-        ]);
-
-        return res.json(leaderboard);
+    listLeaderboard: async function (req, res) {
+         try {
+             const leaderboard = await UserModel.aggregate([
+                 {
+                     $lookup: {
+                         from: "tugas_terkumpul",
+                         localField: "_id",
+                         foreignField: "user",
+                         as: "tugas_terkumpul",
+                     },
+                 },
+                 { $unwind: "$tugas_terkumpul" },
+                 {
+                     $group: {
+                         _id: "$nama_depan",
+                         user: { $first: "$$ROOT" },
+                         poin: { $sum: "$tugas_terkumpul.poin" },
+                     },
+                 },
+                 {
+                     $replaceRoot: {
+                         newRoot: { $mergeObjects: ["$user", { poin: "$poin" }] },
+                     },
+                 },
+                 { $project: { tugas_terkumpul: 0 } },
+                 { $sort: { poin: -1 } }
+             ]);
+     
+            res.json(leaderboard);
+         } catch (err) {
+            console.log(err)
+            res.status(500).json({
+                message: 'Error when getting leaderboard',
+                error: err
+            })
+         }
     }
 };
