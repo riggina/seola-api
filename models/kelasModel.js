@@ -5,7 +5,8 @@ var kelasSchema = new Schema({
 	'bidang_seni' : String,
 	'nama_kelas' : String,
 	'deskripsi' : String,
-	'foto_kelas' : String,
+	'foto_thumbnail' : String,
+	'foto_background' : String,
 	'nama_mentor' : String,
 	'foto_mentor' : String
 });

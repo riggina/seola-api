@@ -13,7 +13,7 @@ var progres_siswaSchema = new Schema({
 	'status_progres' : {
 		type: String,
 		enum: {
-			values: ['BELUM', 'PROGRES', 'SELESAI'],
+			values: ['BELUM', , 'MULAI', 'PROGRES', 'SELESAI'],
 			message: '{VALUE} tidak tersedia'
 		},
 		default: 'BELUM'

@@ -1,11 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var modulController = require('../controllers/modulController.js');
+const { authenticateJWT } = require('../middlewares/auth');
 
 /*
  * GET
  */
 router.get('/', modulController.list);
+
+/*
+ * GET
+ */
+router.get('/progres', authenticateJWT, modulController.progres);
 
 /*
  * GET
